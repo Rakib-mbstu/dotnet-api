@@ -38,6 +38,18 @@ namespace api.Repository
             }
             return comment;
         }
-        
+
+        public async Task<Comments?> UpdateAsync(int id, Comments comments)
+        {
+            var comment = await _context.Comments.FindAsync(id);
+            if(comment == null)
+            {
+                return null;
+            }
+            comment.Title = comments.Title;
+            comment.Content = comments.Content;
+            await _context.SaveChangesAsync();
+            return comment;
+        }
     }
 }
