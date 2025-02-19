@@ -15,7 +15,8 @@ namespace api.Mappers
                 Id = stock.Id,
                 CompanyName = stock.CompanyName,
                 Purchase = stock.Purchase,
-                Industry = stock.Industry 
+                Industry = stock.Industry,
+                Comments = stock.Comments.Select(c=>c.ToCommentsDto()).ToList()
             };
         }
 

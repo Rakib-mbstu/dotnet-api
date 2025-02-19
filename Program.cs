@@ -16,6 +16,10 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
 });
 builder.Services.AddScoped<IStockRepository,StockRepository>();
 builder.Services.AddScoped<ICommentsRepository,CommentsRepository>();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
