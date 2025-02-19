@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using api.Dtos.Comments;
+using api.Models;
+
+namespace api.Mappers
+{
+    public static class CommentsMapper
+    {
+        public static CommentsDto ToCommentsDto(this Comments comments)
+        {
+            return new CommentsDto
+            {
+                Id = comments.Id,
+                Title = comments.Title,
+                Content = comments.Content,
+                CreatedOn = comments.CreatedOn,
+                StockId = comments.StockId,
+            };
+        }
+    }
+}

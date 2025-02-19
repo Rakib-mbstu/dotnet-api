@@ -136,6 +136,7 @@ C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\api.AssemblyInfo.cs
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\api.csproj.CoreCompileInputs.cache
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\api.sourcelink.json
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\scopedcss\bundle\api.styles.css
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\DSi\Documents\dotnet\api\obj\Debug\net9.0\staticwebassets.development.json
