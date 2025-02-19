@@ -9,5 +9,6 @@ namespace api.Interfaces
     public interface ICommentsRepository
     {
         Task<List<Comments>> GetAllAsync();
+        Task<Comments?>GetByIdAsync(int id);
     }
 }
