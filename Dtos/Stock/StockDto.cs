@@ -12,6 +12,7 @@ namespace api.Dtos.Stock
         public string CompanyName { get; set; } = string.Empty;
         public decimal Purchase { get; set; }
         public string Industry { get; set; } = string.Empty;
+        public String Symbol {get;set;} = string.Empty;
         public List<CommentsDto> Comments {get;set;}
     }
 }
