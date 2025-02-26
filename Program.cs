@@ -2,6 +2,7 @@ using api.Data;
 using api.Interfaces;
 using api.Models;
 using api.Repository;
+using api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
 });
 builder.Services.AddScoped<IStockRepository,StockRepository>();
 builder.Services.AddScoped<ICommentsRepository,CommentsRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
