@@ -27,6 +27,9 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 builder.Services.AddIdentity<AppUser,IdentityRole>(x =>{
     x.Password.RequireDigit = true;    
     x.Password.RequiredLength = 4;
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequireLowercase = false;
+    x.Password.RequireUppercase = false;
 }).AddEntityFrameworkStores<ApplicationDBContext>();
 builder.Services.AddAuthentication(options=>{
     options.DefaultAuthenticateScheme = 
