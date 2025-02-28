@@ -22,6 +22,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
 builder.Services.AddScoped<IStockRepository,StockRepository>();
 builder.Services.AddScoped<ICommentsRepository,CommentsRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
@@ -43,6 +44,7 @@ builder.Services.AddAuthentication(options=>{
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options=>
 {
+#pragma warning disable CS8604 // Possible null reference argument.
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -54,6 +56,7 @@ builder.Services.AddAuthentication(options=>{
             System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
         )
     };
+#pragma warning restore CS8604 // Possible null reference argument.
 });
 var app = builder.Build();
 
