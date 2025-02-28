@@ -33,5 +33,49 @@ namespace api.Controllers
             var userPortfolio = await _portfolio.GetUserPortfolio(appUser);
             return Ok(userPortfolio);
         }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddPortfolio([FromBody] string symbol)
+        {
+            var UserName = User.GetUserName();
+            var appUser = await _userManager.FindByNameAsync(UserName);
+            var stock = await _stockRepo.GetBySymbolAsync(symbol);
+            if(stock == null)
+            {
+                return BadRequest("Stock not found");
+            }
+            var userPortfolio = await _portfolio.GetUserPortfolio(appUser);
+            if(userPortfolio.Any( e => e.Symbol.ToLower() == symbol.ToLower()))
+            {
+                return BadRequest("Can not add same stock to portfolio");
+            }
+            var portfolio = new Portfolio
+            {
+                StockId = stock.Id,
+                AppUserId = appUser.Id
+            };
+            await _portfolio.CreatePortfolio(portfolio);
+            if(portfolio == null)
+                return StatusCode(500," Could not create");
+            return Created();
+        }
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeletePortfolio([FromBody] string symbol)
+        {
+            var UserName = User.GetUserName();
+            var appUser = await _userManager.FindByNameAsync(UserName);
+            var userPortfolio = await _portfolio.GetUserPortfolio(appUser);
+            var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower());
+            if(filteredStock.Count()==1)
+            {
+                await _portfolio.DeletePortfolio(appUser, symbol);
+            }
+            else{
+                return BadRequest("Stock is not in your portfolio");
+            }
+            return Ok();
+
+        }
     }
 }
